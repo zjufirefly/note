@@ -1,0 +1,61 @@
+socket.h
+	sockaddr
+	int socket (int __domain, int __type, int __protocol)
+	int bind (int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len)
+	int listen (int __fd, int __n)
+	int accept (int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __addr_len)
+	connect (int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len)
+
+netinet/in.h
+	sockaddr_in
+
+unistd.h
+	ssize_t write (int __fd, const void *__buf, size_t __n) 
+	int close (int __fd)
+
+sockaddr.h
+	typedef unsigned short int sa_family_t;
+
+string.h
+	void bzero (void *__s, size_t __n) 
+
+
+
+
+
+socket发送失败后如何知道socket是否断开
+http://ourjs.com/detail/53d76d072ee1090907000009
+
+linux终端工具
+	Terminator，可以新建tab，切分窗口，隐藏窗口
+	guake热键呼出
+
+信号
+	SIGINT   2,Ctrl C
+	SIGCHLD 17,子进程终止信号
+	SIGKILL  9,不可捕获,不可忽略
+	SIGSTOP 19,Ctrl Z不可捕获，不可忽略
+	SIGPIPE 13,当一个进程向某个已收到RST的套接字执行写操作时，内核向该进程发送SIGPIPE信号
+	SIGTERM 15,关机时init进程给所有进程发送SIGTERM信号，然后再给所有进程发送SIGKILL信号
+	SIGIO	29,信号驱动IO
+
+
+可移植问题
+	1.处理信号后，被中断的慢系统调用行为不一致，有的系统返回错误EINTR，有的系统继续执行被中断的调用
+
+
+
+
+客户端调用read后，如果服务端主机崩溃，客户端需要等待9分钟，返回错误为ETIMEDOUT，路由器判定不可达，返回destination unreadchable ICMP消息，返回错误为EHOSTUNREACH或ENETUNREACH。
+为了不等待较长的时间，可以设置一个超时，在unp14.2节。
+
+在发送数据时才可以检测出服务器崩溃，为了在不主动发送数据时也能检测出，需要使用SO_KEEPALIVE套接字选项，在unp7.5节
+
+服务器进程终止，客户端使用select，poll
+服务器主机崩溃，导致read阻塞9分钟，使用SO_KEEPALIVE套接字选项解决
+服务器主机崩溃后重启，read返回错误为ECONNRESET，使用SO_KEEPALIVE套接字选项解决
+服务器主机关机，服务端捕获SIGTERM函数进行处理，服务端未处理，客户端通过select，poll解决
+
+
+如何获取MSL（最长分节生命期）
+
