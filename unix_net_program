@@ -24,7 +24,6 @@ string.h
 
 
 socket发送失败后如何知道socket是否断开
-http://ourjs.com/detail/53d76d072ee1090907000009
 
 linux终端工具
 	Terminator，可以新建tab，切分窗口，隐藏窗口
@@ -58,4 +57,81 @@ linux终端工具
 
 
 如何获取MSL（最长分节生命期）
+
+
+socket问题
+FIN
+	收到FIN意味对端不会再发送数据。本端read函数返回0。 
+		收到FIN之前有丢包该如何处理？
+	进程终止时，进程打开的套接字由内核关闭，发送FIN。
+	收到FIN以后，如何确保将剩余数据发送到对端？
+
+信号
+	1.fork子进程在终止时会发送SIGCHLD信号给父进程。如果父进程不处理该信号，则子进程变为僵尸进程，父进程需要处理SIGCHLD信号，调用wait函数。
+	
+
+	2.信号会使阻塞与慢系统调用的函数返回，产生EINTR错误。有些系统会自动重启被中断的系统调用，由些不会，确认linux是否会？（linux会重启系统调用）
+		解决方法：为了被中断的系统调用，将系统调用放入到for循环，出现EINTR错误后再次调用系统调用。
+		for (;;) {
+			if ( (connfd = accept() < 0)
+				if (EINTR == errno) {
+					contiunue;
+				}
+			else
+				syslog();
+		}
+		connect函数被信号终端后不能重新启动，如果再次调用，立即返回错误。connect被信号中断时，我们必须调用select等待连接完成。16.3节
+
+	3.调用wait造成多个子进程退出时，只有一个被处理。信号不排队问题。
+		解决方法：使用waitpid以非阻塞方式多次调用
+
+	signal函数不同平台实现不同
+
+accept
+	1.信号会使阻塞与慢系统调用的函数返回，产生EINTR错误。有些系统会自动重启被中断的系统调用，由些不会，确认linux是否会？（linux会重启系统调用）
+	  支持SA_RESTART标志的系统可能对某些系统调用不支持重启
+	2.3次握手完成，连接建立后，客户发送RST（复位）。处理这种问题以来不同实现。SVR返回EPROTO错误，posix指出必须返回ECONNABORTED错误。
+	  解决方法：判断错误号，再次调用accept
+
+客户端fgets，read阻塞在同一终端
+	1.客户端阻塞在fgets，服务器终止。服务端终止后，发送FIN，客户端回ACK。服务端进程终止后客户端再发送数据后，服务端响应RST。
+	  客户端再调用read在收到RST之前时，read返回EOF,在RST之后时，返回ECONNRESET错误。
+	  解决方法：使用select poll
+
+	2.服务端终止后，客户端发送数据将收到RST，再次发送数据将收到SIGPIPE信号。
+	  
+	
+
+
+调试已启动的进程
+gdb processname pid
+
+生成core文件，gcore corefilename
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
