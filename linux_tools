@@ -1,0 +1,102 @@
+监控
+		strace
+		ltrace
+		perf
+		ftrace
+		stap
+		ktap
+		ebpf
+		dtrace
+		lttng
+		sysdig
+		sar
+		dstat
+	文件系统
+		pidstat
+		iostat
+		iotop
+		blktrace
+		swapon
+	网络
+		ss
+		netstat
+		iptraf
+		tcpdump
+		ethtool
+		snmpget
+		lldptool
+		nicstat
+		ip
+	调度，内存
+		mpstat
+		top
+		ps
+		pidstat
+		vmstat
+		slabtop
+		free
+		tiptop
+
+
+测试
+		sysbench
+		ab
+		wrk
+		jmeter
+		openssl
+	文件系统
+		fio
+		dd
+		hdparm
+	网络
+		lmbench
+		hping3
+		iperf
+		ttcp
+		traceroute
+		mtr
+		pchaar
+	调度IO
+		UnixBench
+		perf
+		bench
+		sysbench
+
+优化
+		App Config
+		env
+	文件系统
+		tune2fs
+		stap
+		kpatch
+		ionice
+		MegaCli
+		hdparm
+		blockdev
+		swapon
+	网络
+		ip
+		route
+		sysctl
+		ethtool
+		tc
+		ip
+	调度内存
+		nice
+		renice
+		taskset
+		ulimit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
