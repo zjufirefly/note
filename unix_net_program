@@ -98,9 +98,20 @@ accept
 	  客户端再调用read在收到RST之前时，read返回EOF,在RST之后时，返回ECONNRESET错误。
 	  解决方法：使用select poll
 
-	2.服务端终止后，客户端发送数据将收到RST，再次发送数据将收到SIGPIPE信号。
-	  
-	
+	2.服务端终止后，客户端发送数据将收到RST，再次发送数据将收到SIGPIPE信号(默认关闭程序)。写操作返回EPIPE错误。
+	  解决方法:相应对信号SIGPIPE的处理,或者忽略对信号SIGPIPE处理,判断返回的EPIPE.
+
+服务器主机崩溃，导致read阻塞9分钟，使用SO_KEEPALIVE套接字选项解决	  
+	read返回EHOSTUNREACH或ENETUNREACH。
+	只有在发送数据时才知道错误，
+	解决方法:使用SO_KEEPALIVE选项。
+
+服务器崩溃后重启
+	收到RST,read返回ECONNRESET错误。
+	解决方法:使用SO_KEEPALIVE套接字选项。
+
+使用select导致批量输入问题
+	解决方法:发送完程序不推出,直到接收返回EOF。
 
 
 调试已启动的进程
