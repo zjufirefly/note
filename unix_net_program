@@ -139,6 +139,18 @@ udp
 		解决方法:需要udp使用connect连接到对端后才返回给进程.
 
 
+socket协议无关
+1,不使用gethostbyname,gethostbyaddr调用,改用getaddrinfo,getnameinfo
+
+
+守护进程
+rc
+ |-inetd
+ |   |-网络程序
+ |-cron (at命令进行添加删除)
+ |-syslogd
+
+
 
 
 
