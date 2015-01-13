@@ -1,3 +1,23 @@
+## 文件与目录操作
+### ls
+* ls -lt 按照修改时间排序
+* ls -li 显示inode号
+* ls -ln 文件所属用户,组用数字表示
+* ls -lr 反向排序
+* ls -ls 显示块大小
+* ls -lR 递归显示目录下所有文件
+* ls -l | sort -k 5,5nr 按照文件大小排序
+
+### cd
+* cd -P dir 直接切换的符号连接的本来目录
+
+### chgrp
+* chgrp group filename
+* chgrp -R group filename 递归
+
+### chown
+* chown user:group filename 同时更改用户和组所有者
+
 ## 网络
 ### netstat
 * a 全部显示
