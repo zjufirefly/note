@@ -1,0 +1,31 @@
+clock函数
+
+syslog
+
+事件处理模式
+	reactor模式	反应器模式	同步IO
+		它要求主线程只负责监听文件描述符上是否有事件发生，有的话就立即将事件通知工作线程。除此之外，主线程不做任何其他实质性工作。读写数据，接受新的连接，以及处理客户请求均在工作线程中完成。
+
+	Proactor模式	主动器模式	异步IO
+		Procator模式将所有IO操作均交给主线程内核来处理，工作线程仅仅负责业务逻辑。
+
+
+程序如何获取本地ip地址
+
+
+在Linux 2.4和Linux 2.6之间，线程的实现变为Native POSIX Thread Library（NPTL）。
+
+
+gdb调试多线程,查看coredump的多个线程的调用栈.
+
+会话
+
+gitk
+http://blog.csdn.net/jfkidear/article/details/14106699
+
+
+list.splice练习
+stl6.8 智能指针练习
+复习stl异常，5.11.2节，p139页．6.10.10节,p249页
+
+

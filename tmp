@@ -1,0 +1,39 @@
+fileno，将文件指针转换为描述符
+fdopen, 将描述符转换为文件指针
+
+并发网络程序
+Apache模型（Process Per Connection，简称PPC）,最大连接数都不会高，一般在几百个左右。
+TPC（Thread PerConnection）模型
+select模型,最大限制1024,增加需要编译内核，需要全部扫描，内存拷贝
+poll模型，需要全部扫描，内存拷贝
+Epoll
+
+
+recv和send为什么不处理EWOULDBLOCK和EAGAIN这两种异常
+libevent
+acl库
+ace库
+epoll实践
+
+
+socket，如何知道网络以及断开，如何确定读端关闭（RST），如何知道写端关闭？
+
+
+
+信号
+signal
+sigpending	判定哪些信号被设置位阻塞,并处于未决状态.
+sigpromask	检测和更改当前信号屏蔽字
+sigset_t	信号集结构
+kill		发送信号
+raise		给当前进程发送信号
+alarm		定时发送SIGALRM信号
+pause		收到信号前暂停
+
+
+
+
+
+
+
+

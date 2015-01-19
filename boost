@@ -1,0 +1,59 @@
+C时间
+	time 获取从1970经过的时间的秒数，类型为time_t
+	
+	localtime， 将time_t转换为struct tm，当地时间
+	gmtime， 将time_t转换为struct tm，utc时间
+		
+	mktime，将struct tm转换为time_t
+
+	ctime，将time_t转换为字符串时间，当地时间
+	actime，struct tm转换为字符串时间
+
+日期
+	timer
+	progress_timer
+	progress_display
+
+	#include <boost/date_time/gregorian/gregorian.hpp>
+	
+	day_clock::local_day()	// 获取当期日期
+	day_clock::universal_day()
+
+	
+
+	class date
+	class date_duration days
+	class date_period
+	to_simple_string(date)
+	to_simple_string(date_period)
+	to_iso_string(date)
+	to_iso_extended_string(date)
+
+	
+	class ptime
+	class time_duration
+	class time_period	
+	to_simple_string(ptime)
+	to_simple_string(time_duration)
+	to_simple_string(time_period)
+	to_iso_string(time_duration)
+
+	to_tm(date)
+	to_tm(ptime)
+
+	date_from_tm(tm)
+	ptime form_time_t(time_t)
+
+日期格式化输出
+	date_facet
+	time_facet
+
+
+
+
+
+
+
+
+
+

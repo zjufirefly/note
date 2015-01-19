@@ -1,0 +1,4 @@
+/proc/sys/net/ipv4/
+	tcp_tw_recycle	快速回收关闭的socket
+	tcp_rmem	tcp接收缓冲区
+	tcp_wmem	tcp发送缓冲区
