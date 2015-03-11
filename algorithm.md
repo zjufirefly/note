@@ -11,3 +11,11 @@
 * 先构造最大堆
 * 将最大堆的根节点和最后一个节点交换后,排除最后一个节点,构造最大堆,nlogn
 * HEAP_SORT(heap)
+
+### 优先级队列
+* INSERT(heap, x)
+* MAXIMUM(heap)
+* EXTRACT_MAX(heap)
+    * 将根节点和最后节点交换后,堆size - 1, 维护最大堆
+* INCREASE-KEY(heap, x, k)
+
